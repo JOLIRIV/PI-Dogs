@@ -1,5 +1,5 @@
 import axios from "axios";
-const urlMyApi = "http://localhost:3001";
+//const urlMyApi = "http://localhost:3001";
 
 export function getAllDogs() {
     return async function (dispatch) {
