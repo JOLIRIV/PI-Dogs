@@ -7,7 +7,7 @@
 //   ORDER_BY_WEIGHT,
 // } from "../types/index";
 
-const intialState = {
+const intialState = {//declaro los estados del reducer
   dogs: [],
   temperaments: [],
   allDogs: [],
@@ -35,7 +35,7 @@ const rootReducer = (state = intialState, action) => {
       };
 
     case "GET_FILTER_TEMPERAMENTS":
-      const allDogs = state.allDogs;
+      const allDogs = state.allDogs;// se usa para filtrar siempre sobre todo, y no sobre el filtro anterior.
       let filteredDogs = [];
       if (action.payload === "Todos") {
         filteredDogs = allDogs;
@@ -49,13 +49,13 @@ const rootReducer = (state = intialState, action) => {
       }
       return {
         //return funciona correcto
-        ...state,
+        ...state,//si no se hace la copia, se borra del estado.
         dogs: filteredDogs,
       };
     case "GET_BREED":
       return {
         ...state,
-        dogs: action.payload,
+        dogs: action.payload,//es el arreglo que estoy renderizando
       };
     case "ORDER_BY_NAME":
       const sortedName =

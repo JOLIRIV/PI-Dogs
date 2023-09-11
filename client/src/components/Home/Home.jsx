@@ -18,33 +18,33 @@ import style from "../Home/Home.module.css"
 
 function Home() {
   const dispatch = useDispatch();
-  const allDogs = useSelector(state => state.dogs); //valores del estado global de redux que requiero
+  const allDogs = useSelector(state => state.dogs); //valores del estado global de redux que requiero//con el use selector, trae en la constante todo lo que hay en el estado de dogs.
   const allTemperaments = useSelector(state => state.temperaments);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);//estado local con la página actual y que setea la página actual(indica cuál va a ser la futura página actual)
   const dogsPerPage = 8;
-  const lastIndex = currentPage * dogsPerPage; 
-  const firstIndex = lastIndex - dogsPerPage;
-  const currentDogs = allDogs.slice(firstIndex, lastIndex);//elementos a renderizar en la pagina, segun el valor de paginado
-
+  const lastIndex = currentPage * dogsPerPage;//índice del último personaje que tengo en cada página
+  const firstIndex = lastIndex - dogsPerPage;//índice del último personaje, menos los personajes por página(índice del primer personaje que tengo en cada página)
+  const currentDogs = allDogs.slice(firstIndex, lastIndex);//guarda los elementos a renderizar en la pagina (personajes que están en la página actual)//el slice toma la porción del arreglo dependiendo de lo que se le pase por parámetro
+  //el paginado se utiliza solamente en home, por eso se maneja con estados locales y no en el estado global.
   console.log(currentDogs);
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
-  };
+  };//es una constante a la que se le pasa el número de página y se setea en ese número de página
 
   // eslint-disable-next-line
-  const [orden, setOrden] = useState("");
+  const [orden, setOrden] = useState("");//es un estado local vacío que lo utilizo que para que cuando setee la página modifique el estado local y se renderice.
 
   useEffect(() => {
-    //acciones a depachar luego de montar el componente
+    //acciones a depachar luego de montar el componente//el useEffect trae del estado los personajes cuando el componente se monta (va llenando el estado cuando se monta el componente).
     dispatch(getAllDogs());
     dispatch(getTemperaments());
-  }, [dispatch]);
+  }, [dispatch]);//montate y ejecutalo siempre y cuando suceda el dispatch.Suele usarse cuando se tienen dependencias entre una y otra cosa(un componente tiene que montarse si pasa algo antes)
 
-  const handleFilterByTemperament = (e) => {
+  const handleFilterByTemperament = (e) => {//e es el evento.Esta función despacha la acción
     e.preventDefault();    
-    dispatch(FilterByTemperament(e.target.value));
+    dispatch(FilterByTemperament(e.target.value));//con el e.target.value toma el valor dependiendo de las opciones según clickee el usuario
   };
 
   const handleFilterByCreated = (e) => {
@@ -128,13 +128,13 @@ function Home() {
 
     <div className={style.main_container}>
       <div className={style.container_cards}>
-        {currentDogs?.map((el) => {//validacion que existan los datos
+        {currentDogs?.map((el) => {//validacion que existan los datos//dog-detail es la ruta indicada en App//estoy mapeando el estado global y pasando las cosas que necesito en la tarjeta
           return(
             <div className={`${style.container_card}`} key={el.id}>
               <Link to={"/dog-detail/"+el.id}>
                 {
-                  <Card key={el.id} image={el.image} name={el.name} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments}/>
-                  //si temperaments viene en un formato distinto desde la BD
+                  <Card key={el.id} image={el.image} name={el.name} weight={el.weight} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments}/>
+                  //si temperaments viene en un formato distinto desde la BD. Con el map, se le están pasando las props a Card. El home ya trae el estado global, por eso mapeo del estado global y le paso las props a Card.
                 }
               </Link>
             </div>      

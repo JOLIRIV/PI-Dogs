@@ -19,6 +19,7 @@ router.use('/dog', dogRouter);
 //--endpoints--//
 
 router.get("/temperament", async (req, res) => {
+    try{
     const temperamentsApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${MY_API_KEY}`);
     const temperaments = temperamentsApi.data.map(t => t.temperament);
     const temps = temperaments.toString().split(",");
@@ -30,7 +31,10 @@ router.get("/temperament", async (req, res) => {
     })
 
     const allTemp = await Temperament.findAll();    
-    res.send(allTemp);
+    res.send(allTemp);}
+    catch (error) {
+        res.status(400).json({ error: error.message });
+      }
 });
 
 router.use(express.json());

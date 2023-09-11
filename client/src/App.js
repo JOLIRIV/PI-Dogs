@@ -4,7 +4,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/Home/Home"
 import DogDetails from "./components/DogDetails/DogDetails";
 import FormAddDog from "./components/FormAddDog/FormAddDog";
-
+//App renderiza en cada path el componente indicado.
 function App() {
   return (
     <BrowserRouter>
@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;// con el switch se mueve solamente dentro de lo que se está envolviendo.

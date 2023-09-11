@@ -9,12 +9,13 @@ export default function SearchBar() {
 
     const handleInput = (e) => {
         e.preventDefault()
-        setSearchDog(e.target.value)
+        setSearchDog(e.target.value)//seteo el SearchDog en el valor del input(lo que tipea el usuario)
+        console.log(searchDog)//voy guardando lo que está tipeando el usuario, en el estado local SearchDog
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(getBreed(searchDog));
+        dispatch(getBreed(searchDog));//lo que tengo en el estado local le llega a la acción que llama al back y le pasa lo que está escribiendo el usuario
     }
 
     return(

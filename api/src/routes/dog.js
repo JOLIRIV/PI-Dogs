@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
      temperaments,
      image
     } = req.body
- 
+    try{
     const fixedHeight = []
     const minHeight = min_height;
     const maxHeight = max_height;
@@ -41,8 +41,10 @@ router.post("/", async (req, res) => {
  
     dog.addTemperament(associatedTemp);
  
-    res.status(200).send("Dog created succesfully!")
-})
+    res.status(200).send("Dog created succesfully!")}
+    catch (error) {
+        res.status(400).json({ error: error.message });
+      }});
 
 router.use(express.json());
 

@@ -22,20 +22,20 @@ export function getTemperaments() {
     }  
 };
 
-export function FilterByTemperament(payload) {
+export function FilterByTemperament(payload) {//el payload es lo que se manda desde el componente, puede tener cualquier nombre.Por ejemplo en los filtros son las opciones del filtro
     return{
         type: "GET_FILTER_TEMPERAMENTS",
         payload
     }
 };
 
-export function getBreed(payload) {//dogs by name
+export function getBreed(payload) {//dogs by name //la uso para la barra de búsqueda
     return async function (dispatch) {//Dispatch que podemos usar gracias a la asincronia provista por el middleware thunk
         try {
-            var json = await axios.get(`/dogs?name=${payload}`) //axios.get(`${urlMyApi}/dogs?name=${payload}`)
+            var json = await axios.get(`/dogs?name=${payload}`) //el payload es lo que viene en la barra de búsqueda
             return dispatch ({
                 type: "GET_BREED",
-                payload: json.data
+                payload: json.data//es lo que devuelve la ruta una vez que se le asigna algo por name.
             })
         } catch (error) {
             console.log(error);
@@ -75,7 +75,7 @@ export function showDogDetails(id) {
 export function postDog(payload) {
     return async function () {
         const data = await axios.post("/dog", payload); //axios.post("http://localhost:3001/dog"
-        return data;
+        return data;//en este caso se llama a una ruta de post.
     }};
 
 export function byCreated(payload) {

@@ -4,16 +4,12 @@ a{
 }
 
 .main_container{
-    font-size: 0.7rem;
+    font-size: 0.45rem;
     text-decoration: none;
-    max-height: 50vh;
+    max-height: 55vh;
     overflow: hidden;
-    color: #575025;
+    color: #253657;
     position: relative;
-}
-
-.main_container:hover{
- /* cursor: pointer; */
 }
 
 .main_container::before{
@@ -22,12 +18,12 @@ a{
 }
 
 .main_container:hover::before{
-    content: "Details";
+    content: "Go to details";
     height: 100%;
     width: 100%;
     text-align: center;
     border-radius: 10px;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     left: 0%;
     background-color: rgba(153, 153, 153, 0.5);
 }
@@ -41,10 +37,6 @@ a{
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.img{
-    
 }
 
 .main_container h2{

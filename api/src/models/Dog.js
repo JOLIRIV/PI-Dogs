@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     height: {
-      type: DataTypes.ARRAY(DataTypes.STRING),//al enviar los datos por medio del body se hace con un array
+      type: DataTypes.ARRAY(DataTypes.STRING),//array de strings
       allowNull: false
     },
     weight: {

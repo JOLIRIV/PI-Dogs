@@ -2,20 +2,20 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getTemperaments, postDog } from "../../redux/actions";
+import { getTemperaments, postDog } from "../../redux/actions";//son las acciones que necesito para el formulario
 
 import style from "../FormAddDog/FormAddDog.module.css";
 
-const validate = (form) => {
+const validate = (form) => {//la función validadora se crea afuera.El input es el estado local form
     let errors = {}
-    if(!form.name) {
+    if(!form.name || /\d/.test(form.name)) {
         errors.name = "Name is required, it should not contain numbers"
     }
-    if(!form.min_height || !form.max_height) {
-        errors.height = "Height is required"
+    if(isNaN(form.min_height) || isNaN(form.max_height) || !form.min_height || !form.max_height || form.max_height<form.min_height) {
+        errors.height = "Height is required, max height should be more than min height"
     }
-    if(!form.min_weight || !form.max_weight) {
-        errors.weight = "Weight is required"
+    if(isNaN(form.min_weight) || isNaN(form.max_weight) || !form.min_weight || !form.max_weight || form.max_weight<form.min_weight) {
+        errors.weight = "Weight is required, max weight should be more than min weight"
     }
     if(!form.life_span) {
         errors.life_span = "Lifespan is required, type only numbers separated by a dash (-)"
@@ -29,7 +29,7 @@ export default function FormAddDog() {
     const temperaments = useSelector((state) => state.temperaments);
 
     const [button, setButton] = useState(true);
-    const [errors, setErrors] = useState({
+    const [errors, setErrors] = useState({//se genera le estado local, que es un objeto vacío.
         name: "",
         min_height: "",
         max_height: "",
@@ -39,7 +39,7 @@ export default function FormAddDog() {
         image: "",
     });
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState({//a este objeto se le pasa todo lo que necesita el post.
         name: "",
         min_height: "",
         max_height: "",
@@ -47,16 +47,17 @@ export default function FormAddDog() {
         max_weight: "",
         life_span:  "",
         image: "",
-        temperaments: [],
+        temperaments: [],//se guarda en un arreglo, porque necesito guardar más de uno.
     })
 
     useEffect(() => {
-        dispatch(getTemperaments());
+        dispatch(getTemperaments());//uso el useEffect porque necesito renderizar la acción.
     }, [dispatch]);
 
     useEffect(()=>{
-        if (form.name.length > 0 && form.min_height.length > 0  && form.max_height.length > 0 && form.min_weight.length > 0 && form.max_weight.length > 0) setButton(false)
-        else setButton(true)
+        if (form.name.length > 0 && !(/\d/.test(form.name)) && form.min_height.length > 0  && form.max_height.length > 0 && form.min_weight.length > 0 && form.max_weight.length > 0 && Number(form.min_height) < Number(form.max_height) && 
+        Number(form.min_weight) < Number(form.max_weight)) setButton(false)
+        else setButton(true)//se deshabilita el botón si hay algo en el estado errors.
     }, [form, setButton]);
 
     const handleSubmit = (e) => {
@@ -72,7 +73,7 @@ export default function FormAddDog() {
             life_span: "",
             image: "",
             temperaments: []
-        });
+        });//seteo el estado en blanco una vez creado. Ver si puedo agregar la opción history.push que dice la clase en 1:05
     }
     
     const handleChange = (e) => {
@@ -89,7 +90,7 @@ export default function FormAddDog() {
     const handleSelect = (e) => {
         setForm({
             ...form,
-            temperaments: [...form.temperaments, e.target.value]
+            temperaments: [...form.temperaments, e.target.value]//le paso muchos, ...form.temperaments es lo que ya había y le concateno el target value, voy guardando en un arreglo todo los que hay en el select.
         })
     }
 
@@ -100,7 +101,7 @@ export default function FormAddDog() {
         })
     }
 
-    return(
+    return(//se pone too entre div, y un solo h3, porque es el único título del formulario
         <div className={style.main_wrapper}>
             <div className={style.container}>
                 <Link to="/home">
@@ -179,4 +180,4 @@ export default function FormAddDog() {
             </div>
         </div>
     )
-}
+}//uso los distintos tipos, select para el combo, input para los cuadros, etc.El checkbox es para cuando hay pocas cosas, en este caso es mejor un select.
