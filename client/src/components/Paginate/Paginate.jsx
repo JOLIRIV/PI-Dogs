@@ -2,7 +2,7 @@ import React from "react";
 import style from "../Paginate/Paginate.module.css"
 
 export default function Paginate({ dogsPerPage, allDogs, paginado }) {
-    const pageNumbers =[];
+    const pageNumbers =[];//array que contendrá la cantidad de páginas a renderizar
 
     for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) { //math ceil redondea para arriba//cantidad de elementos totales, dividido limite de elementos por pagina
         pageNumbers.push(i);

@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 import style from "../DogDetails/DogDetails.module.css";
 
 export default function DogDetails() {
-    const dispatch = useDispatch();
-    let { id } = useParams();
+    const dispatch = useDispatch();//para poder utilizar el dispatch
+    let { id } = useParams();//obtiene el parámetro id de la ruta invocada en showDogDetails.
 
     useEffect(() => {
-        dispatch(showDogDetails(id));
-    }, [dispatch, id]);
-
-    const details = useSelector((state) => state.details)
+        dispatch(showDogDetails(id));//llama a la API o DB para obtener los detalles del perro con ese ID
+    }, [dispatch, id]);//es el array de dependencias. Se ejecutará el useEffect(en este caso el dispatch de Showdogdetails) solamente si los valores de dispatch o id cambian entre los renderizados.
+    //si el array está vacío, se ejecutará solamente una vez cuando se monte el componente.
+    const details = useSelector((state) => state.details)//obtiene los detalles del perro del estado global. Details viene del estado global del reducer.
     // console.log(details);
 
-    let nameDog, imageDog, temperamentDog = [], heightDog, weightDog, lifeSpanDog;
+    let nameDog, imageDog, temperamentDog = [], heightDog, weightDog, lifeSpanDog;//declaro varias variables
 
     if (details[0]) { //una vez ya se hayan traido los datos renderizalos
         nameDog = details[0].name;
@@ -24,14 +24,14 @@ export default function DogDetails() {
         heightDog = details[0].height;
         weightDog = details[0].weight;
         lifeSpanDog = details[0].life_span;
-
+    //es un array con un objeto
         if (details[0].temperaments[0]) {
             temperamentDog = [...details[0].temperaments]
-        }
+        }//si los temperamentos están disponibles, se copian en la variable temperamentDog
 
         if (details[0].temperaments[0].name) {
             temperamentDog = details[0].temperaments.map(temp => temp.name)
-        }
+        }//convierto temperamentDog en un array de nombres de temperamentos.
     };
 
     

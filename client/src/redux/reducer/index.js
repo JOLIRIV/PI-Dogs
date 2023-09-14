@@ -1,11 +1,3 @@
-// import {
-//   GET_ALL_DOGS,
-//   GET_TEMPERAMENTS,
-//   GET_FILTER_TEMPERAMENTS,
-//   GET_BREED,
-//   ORDER_BY_NAME,
-//   ORDER_BY_WEIGHT,
-// } from "../types/index";
 
 const intialState = {//declaro los estados del reducer
   dogs: [],

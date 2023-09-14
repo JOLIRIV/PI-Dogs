@@ -36,14 +36,14 @@ router.post("/", async (req, res) => {
     })
  
     let associatedTemp = await Temperament.findAll({
-        where: { name: temperaments},
+        where: { name: temperaments},//se buscan en la base de datos, todos los temperamentos ingresados por body
     })
  
-    dog.addTemperament(associatedTemp);
+    dog.addTemperament(associatedTemp);//addTemperament es el método de Sequelize para asociar los temperamentos de cada perro. Se utiliza en relaciones de muchos a muchos.
  
     res.status(200).send("Dog created succesfully!")}
     catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });//es un mensaje de error que viene por default, por ejemplo podría ser "Validation error: Name is required".
       }});
 
 router.use(express.json());

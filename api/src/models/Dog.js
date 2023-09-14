@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dog', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.UUID,//identificador único
+      defaultValue: DataTypes.UUIDV4,//UUID generado aleatoriamente
       allowNull: false,
       primaryKey: true
     },

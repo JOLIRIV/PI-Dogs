@@ -1,8 +1,8 @@
 import React from "react";
 import style from "../Card/Card.module.css";
 
-export default function Card({ image, name, weight, temperaments }) {//se pasa por props, no se necesita traer ningún estado porque la lógica ya está en el home.
-  return (
+export default function Card({ image, name, weight, temperaments }) {//se pasa por props, no se necesita traer ningún estado porque la lógica ya está en el home.Las props recibidas se utilizan para renderizar la información
+  return (//los div contenedor principal y contenedor de imagen//se mapea temperaments en un array de encabezados h3
     <div className={style.main_container}>
       <div className={style.image_container}>
         <img className={style.img} src={`${image}`} alt={`imagen de: ${name}`}/>
@@ -16,5 +16,5 @@ export default function Card({ image, name, weight, temperaments }) {//se pasa p
       </div>
       
     </div>
-  );
+  );//se utiliza el Math.random(número aleatorio) porque es necesario generar una key para hacer el map.
 }

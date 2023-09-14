@@ -8,9 +8,9 @@ function LandingPage() {
     <div className={`${style.main_container}`}>
       <div className={`${style.main_left_container}`}>
         <h1 className={`${style.titleApp}`} >A DOGPEDIA</h1>
-        <h3>Aplication about man's best friend</h3>
+        <h3>Aplication about dogs</h3>
         <div className={`${style.left_paragraph}`}>
-          <p>Here you can get information about multiple dog breed names and details such as their size, life expectancy and temperament, and you can also add new ones</p>
+          <p>Here, you can access a wealth of information on a variety of dog breeds, detailing aspects such as size, life span, and temperament. Additionally, it provides you the ability to contribute by adding new breeds to our database.</p>
         </div>
         
         <Link to="/home">

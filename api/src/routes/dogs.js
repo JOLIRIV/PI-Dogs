@@ -10,7 +10,7 @@ router.get("/", async(req, res) => {//esta funcion también puede recibir un nom
     const { name } = req.query;
     try{
     const allDogs = await getAllDogs();
-    if (name) {
+    if (name) {//toLowerCase convierte el string a minúscula para poder hacer la búsqueda con cualquier tipo de letra que se ingrese.
         const dog = allDogs.filter(d => d.name.toLowerCase().includes(name.toLowerCase()));//si el perro existe guardame sus parametros aca.
         dog.length ? res.status(200).send(dog) : res.status(404).send("Dog not found"); //este es un filtro del back.
     } else {

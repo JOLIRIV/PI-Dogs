@@ -1,14 +1,14 @@
 .searchbar_container{
-    height: 20px;
+    height: 18px;
     width: 200%;
 }
 
 .searchbar{
-    height: 100%;
+    height: 120%;
     width: 47%;
     font-size: 1.3rem;
     border: 1px solid #253db6;
-    border-top: none;
+    border-top: 1px solid #253db6;
     outline: none;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
@@ -16,7 +16,7 @@
 
 .searchbar_button{
     border-radius: 0;
-    height: 116%;
+    height: 140%;
     width: 4rem;
     background-color: #1c0861;
     /* border-top: 2px solid gray; */
@@ -24,6 +24,6 @@
     border-bottom-right-radius: 10px;
 }
 
-.searchbar_button i{
+.searchbar_button_i{
     font-size: 1.3rem;
 }

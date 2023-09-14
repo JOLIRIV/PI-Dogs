@@ -180,4 +180,4 @@ export default function FormAddDog() {
             </div>
         </div>
     )
-}//uso los distintos tipos, select para el combo, input para los cuadros, etc.El checkbox es para cuando hay pocas cosas, en este caso es mejor un select.
+}//uso los distintos tipos, select para el combo, input para los cuadros, etc.El checkbox es para cuando hay pocas cosas, en este caso es mejor un select.//disabled={button}implica que el botón estará deshabilitado si es true.form="form" se indica para especificar que el botón está asociado al formulario "form"

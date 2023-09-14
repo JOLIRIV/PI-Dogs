@@ -134,7 +134,7 @@ function Home() {
               <Link to={"/dog-detail/"+el.id}>
                 {
                   <Card key={el.id} image={el.image} name={el.name} weight={el.weight} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments}/>
-                  //si temperaments viene en un formato distinto desde la BD. Con el map, se le están pasando las props a Card. El home ya trae el estado global, por eso mapeo del estado global y le paso las props a Card.
+                  //le paso las props a card, id es la clave para poder identificar la card. si temperaments viene en un formato distinto desde la BD. Con el map, se le están pasando las props a Card. El home ya trae el estado global, por eso mapeo del estado global y le paso las props a Card.
                 }
               </Link>
             </div>      
@@ -142,7 +142,7 @@ function Home() {
         })}
       </div>
       <div className={`${style.pagination}`}>
-        <Paginate dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/> {/*el valor de la funcion de paginado aumenta segun el bucle for en el componente Paginate*/}
+        <Paginate dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/> {/*elvalor de la funcion de paginado aumenta segun el bucle for en el componente Paginate//le paso las props al componente paginate*/}
       </div>
     </div>
     </>
